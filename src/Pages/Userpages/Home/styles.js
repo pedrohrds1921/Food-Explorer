@@ -1,0 +1,66 @@
+import styled  from "styled-components";
+
+
+export const Container=styled.div`
+width:100vw;
+
+`
+export const Content= styled.main`
+padding:1.6rem;
+width:100%;
+margin:0 auto;
+
+.box{
+    display:flex;
+    justify-content:space-between;
+    flex-direction:row;
+    position:relative;
+    margin-top:4.4rem;
+    height:13rem;
+    width:100%;
+    padding:1.5rem;
+    background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
+    border-radius: 2.91696px;
+    margin-bottom:2.3rem;
+    
+    img{
+        position:absolute;
+        z-index:-0;
+        transform:translate(-31px, -35px);
+
+    }
+    .text{
+        width:100%;
+        z-index:2;
+        margin-left:13rem;
+        display:flex;
+        flex-direction:column;
+        h1{
+        font-size:1.8rem;
+        }
+        span{
+            font-size:1.2rem; 
+        }
+
+    }
+
+
+}
+section{
+    margin-bottom:6.3rem;
+    h2{
+        margin-bottom:2.4rem;
+    }
+
+    .Foods{
+        display:flex;
+        gap:1.6rem;
+        flex-shrink: 0;
+        overflow-x:scroll;
+    }
+
+
+
+}
+
+`

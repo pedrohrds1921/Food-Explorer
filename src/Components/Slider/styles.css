@@ -1,0 +1,14 @@
+.swiper{
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+
+
+}
+
+
+.swiper-button-next{
+    color: aqua;
+
+}
