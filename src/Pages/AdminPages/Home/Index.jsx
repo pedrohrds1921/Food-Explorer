@@ -79,7 +79,7 @@ export default function Home(){
           {foods.map(category => (
             <div key={category.title}>
               <h2>{category.title}</h2>
-             <Slider>
+                {isDesktop &&(  <Slider>
              {category.foods.map(food => (
                <SwiperSlide>
                   <CardUser 
@@ -90,11 +90,18 @@ export default function Home(){
                   />
                </SwiperSlide>
                 ))} 
-             </Slider>
+             </Slider>)}
+          {!isDesktop &&   <div className="Foods">
+                {category.foods.map(food => (
+                  <CardUser key={food.id} data={food} onClick={()=>handleDetails(food.id)} />
+                ))}
+              </div>}
+
+
             </div>
           ))}
-        </section>
-                
+                </section>
+  
               </Content>
               <Footer/>
         </Container>

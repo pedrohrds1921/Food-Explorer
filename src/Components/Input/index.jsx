@@ -1,10 +1,10 @@
 import { Container } from "./style"
 
-export default function Input({type,title,placeholder,value,onChange}){
-
+export default function Input({type,title,className,placeholder,value,onChange}){
+console.log(className)
 
     return(
-        <Container>
+        <Container className={className}>
             <label htmlFor={title}>{title}</label>
             <input type={type}
              name="name" id={title}

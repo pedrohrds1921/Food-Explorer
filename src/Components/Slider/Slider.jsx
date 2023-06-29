@@ -13,8 +13,7 @@ export default function Slider({settings,children}){
         <Swiper 
         modules={[Navigation]}
         navigation
-        slidesPerView={3}
-        centeredSlides={true}
+        slidesPerView={2}
         {...settings}>{children}</Swiper>
    
 

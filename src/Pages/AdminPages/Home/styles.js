@@ -2,18 +2,19 @@ import styled  from "styled-components";
 
 
 export const Container=styled.div`
-width:100vw;
+width:100%;
 
 `
 export const Content= styled.main`
 padding:1.6rem;
-width:70vw;
+width:100%;
 margin:0 auto;
 @media (min-width:768px){
     padding: 1.5rem 7.6875rem;
     align-items:center;
     justify-content:space-between;
     gap: 2rem;
+    width:70vw;
 }
 .box{
     display:flex;
@@ -69,6 +70,14 @@ section{
     h2{
         margin-bottom:2.4rem;
     }
+
+    .Foods{
+        display:flex;
+        gap:1.6rem;
+        flex-shrink: 0;
+        overflow-x:scroll;
+    }
+
 
 }
 

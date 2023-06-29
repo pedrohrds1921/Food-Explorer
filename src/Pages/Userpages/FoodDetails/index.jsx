@@ -9,6 +9,7 @@ import { api } from "../../../services/api"
 import {Loading} from"../../../Components/loading"
 import { useNavigate,useParams } from "react-router-dom";
 import { useState,useEffect } from "react"
+import { useMediaQuery } from "react-responsive";
 
 export default function FoodDetails(){
     const [food,setFood]=useState(null)
@@ -17,6 +18,9 @@ export default function FoodDetails(){
     const params = useParams();
     const [load,setLoad]=useState(false)
     
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 768px)'
+      })
   
     useEffect(()=>{
         async function fetchFoods() {
@@ -35,15 +39,15 @@ export default function FoodDetails(){
         <Container>
               <Header/>
                 {!load &&  <Loading/>}
-                {food &&  <Content>
+            {!isDesktop && food &&   
+            <Content>
                 <button onClick={()=>navigate(-1)}>
                     <AiOutlineLeft  size={30} fill="white"/> 
                     <p>Voltar</p>
                 </button>
                 <WrapperImg>
-                 <img src={foodUrl} alt=""/>
-                 </WrapperImg>
-    
+                <img src={foodUrl} alt=""/>
+                </WrapperImg>
                 <h2>{food.Name}</h2>
                 <p>{food.Description}</p>
                 <Ingredients ingredientsData={food.ingredientsFood} />
@@ -54,6 +58,32 @@ export default function FoodDetails(){
                         pedir.
                         <span>{food.Price}</span>
                     </button>
+                </div>
+              </Content>}
+
+              {isDesktop && food &&   
+            <Content>
+                <button onClick={()=>navigate(-1)}>
+                    <AiOutlineLeft  size={30} fill="white"/> 
+                    <p>Voltar</p>
+                </button>
+                <div className="wrapper">
+                    <WrapperImg>
+                            <img src={foodUrl} alt=""/>
+                    </WrapperImg>
+                    <div className="foodInfo">
+                        <h2>{food.Name}</h2>
+                        <p>{food.Description}</p>
+                        <Ingredients ingredientsData={food.ingredientsFood} />
+                        <div className="Checkout">
+                            <Count/>
+                            <button>
+                                <MdOutlineReceipt size={30} fill="white"/>
+                                pedir.
+                                <span>{food.Price}</span>
+                            </button>
+                        </div>
+                </div>
                 </div>
               </Content>}
               <Footer/>

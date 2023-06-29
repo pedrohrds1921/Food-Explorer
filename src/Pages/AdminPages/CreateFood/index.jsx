@@ -1,4 +1,13 @@
-import { Container,Content,IngredientsArea,Wrapper,WrapperTxtarea} from "./styles"
+import { 
+  Container,
+  Content,
+  IngredientsArea,
+  Wrapper,
+  WrapperTxtarea,
+  InputName,
+  InputPrice,
+  InputImg
+} from "./styles"
 import Footer from "../../../Components/Footer"
 import {api} from"../../../services/api"
 import {Header} from "../../../Components/Header"
@@ -7,11 +16,11 @@ import Input from "../../../Components/Input"
 import { Itens } from "../../../Components/Itens"
 import BackButton from "../../../Components/BackButton/index"
 import { useState } from "react"
-
+import {useNavigate} from "react-router-dom"
 import {RiArrowDropDownLine}from "react-icons/ri"
 
 export function CreateFood(){
-
+  const navigate=useNavigate()
   const [Ingredients,setIngredients]=useState([])
   const [newIngredients,setNewIngredients]=useState()
   const [Name, setName]=useState()
@@ -61,18 +70,11 @@ async function handleFoodCreate(){
  const {data}= await api.post("/foods",{
     Name,Price,Category,Description,Ingredients
   })
-
-
-
     const fileUploadForm=new FormData()
     fileUploadForm.append("foodImage",FoodImgFile)
-   
-
     await api.patch(`foods/foodImage/${data}`,fileUploadForm)
-
-
-
-  alert("Prato Criado ")
+    navigate("/")
+    alert("Prato Criado ")
 
 }
 
@@ -81,10 +83,12 @@ async function handleFoodCreate(){
             <Header type={1}/>
             <Content>
             <BackButton to={-1} fontSize={15}/>
-              <form action="">
                 <h2>Novo prato</h2>
-                <InputImage title="Selecione uma Imagem" onChange={handleFileChange}/>
-                <Input title="Nome" 
+              <form action="">
+                <InputImg title="Selecione uma Imagem" onChange={handleFileChange}/>
+                <InputName 
+                className
+                title="Nome" 
                 placeholder="Ex: Salada Ceaser" 
                 type="text"
                 onChange={e=>setName(e.target.value)}
@@ -116,17 +120,18 @@ async function handleFoodCreate(){
                       />
                     ))
                   }
-                 
                     <Itens
                       isNew 
                       placeholder="Adicionar"
                       value={newIngredients}
                       onClick={handleAddIngredients}
                       onChage= {e=>setNewIngredients(e.target.value)}
-                     />
+                      />
                   </IngredientsArea>
                 </Wrapper>
-                <Input title="Preço" 
+                <InputPrice 
+                className
+                title="Preço" 
                 placeholder="R$ 00,00" 
                 value={Price}
                 type="text"

@@ -7,6 +7,10 @@ height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:space-around;
+
+
+
+
 `
 export const Content= styled.main`
 padding:2.8rem;
@@ -16,6 +20,34 @@ display:flex;
 flex-direction:column;
 gap:1.6rem;
 align-items:center;
+
+@media (min-width:768px){
+    width:70vw;   
+    margin:0 auto;   
+    height:100%;
+    
+}
+
+
+.wrapper{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:2.99rem;
+  
+}
+.foodInfo{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:flex-start;
+gap:1.5rem;
+
+
+}
+
+
 button{
     display:flex;
     align-items:center;
@@ -39,10 +71,21 @@ button{
     }
 }
 
-h2{font-size:2rem;}
+h2{font-size:2rem;
+    @media (min-width:768px){
+      
+        font-size:2.5rem;
+}
+
+}
 
 p{
     text-align:center;
+
+    @media (min-width:768px){
+        text-align:start;
+        font-size: 1.9rem;
+}
 }
 
 .Checkout{
@@ -63,22 +106,32 @@ gap:1.6rem;
     font-weight:bold;
     color:${({theme})=>theme.COLORS.Light_Light_300};
 }
-
 }
 
 `
 
 export const WrapperImg=styled.div`
+flex:91rem;
 width:20rem;
 height:20rem;
-border-radius:50%;
+border-radius: 50%;
+padding:10px;
 display:flex;
 justify-content:center;
 align-items:center;
 background-color:${({theme})=>theme.COLORS.Dark_Dark_1000};
 img{
-    width:90%;
-    aspect-ratio:1/1;
+    width:100%;
+    height:100%;
     border-radius: 50%;
 }
+
+@media (min-width:768px){
+    width:50rem;
+    height:50rem;
+    padding:10px;
+}
+
+
+
 `

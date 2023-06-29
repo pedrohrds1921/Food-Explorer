@@ -10,6 +10,25 @@ justify-content:center;
 align-items:center;
 padding:4.7rem;
 flex-direction:column;
+
+
+@media (min-width:768px){
+    flex-direction:row;
+    gap:19rem;
+    
+.singIN{
+    width:40rem;
+    display: inline-flex;
+    padding: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color:${({theme})=>theme.COLORS.Dark_Dark_700};
+}
+}
+
+
 >svg{
 
     margin-bottom:7.3rem;

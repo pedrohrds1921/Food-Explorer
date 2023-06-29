@@ -11,6 +11,7 @@ border-radius: .5rem;
 background-color:${({theme})=>theme.COLORS.Dark_Dark_900};
 margin-bottom:3.6rem;
 
+
 @media (min-width:768px){
     align-items:center;
     justify-content:space-between;
@@ -20,7 +21,7 @@ margin-bottom:3.6rem;
 >button{
     position:absolute;
     color:${({theme})=>theme.COLORS.Light_Light_500};
-    
+  width:30px;
 }
 input{
 font-size:1.6rem;

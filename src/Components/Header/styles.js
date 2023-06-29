@@ -22,7 +22,7 @@ background-color:${({theme})=>theme.COLORS.Dark_Dark_700};
 .Pedido{
     background-color:${({theme})=>theme.COLORS.Tints_Tomato_100};
     display: flex;
-    width: 13.5rem;
+    width: 18.5rem;
     padding: 0.75rem 2rem;
     justify-content: center;
     align-items: center;

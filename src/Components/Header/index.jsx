@@ -8,9 +8,18 @@ import {useSearch} from "../../hooks/Search.jsx"
 import  Search  from "../Search/index";
 import { useMediaQuery } from "react-responsive";
 import{RxExit} from"react-icons/rx"
+import { useAuth } from "../../hooks/auth";
 
 
 export function Header({type}){
+
+
+    function handlesingOut(){
+        singOut()
+        navigate("/")
+    }
+
+    const {singOut}=useAuth()
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 768px)'
@@ -42,7 +51,7 @@ export function Header({type}){
                 <p>Pedido(0)</p>
             </button>
             <button className="singOut">
-            <RxExit size={25} fill="white"/>
+            <RxExit size={25} fill="white" onClick={handlesingOut}/>
             </button>
     </Container>
         )
@@ -60,11 +69,11 @@ export function Header({type}){
                 <p>admin</p>
                 </div>
                 <Search />
-                <button className="Pedido">
+                <Link to="/create"className="Pedido">
                     <p>Novo Prato </p>
-                </button>
+                </Link>
                 <button className="singOut">
-                <RxExit size={25} fill="white"/>
+            <RxExit size={25} fill="white" onClick={handlesingOut}/>
                 </button>
         </Container>
         )

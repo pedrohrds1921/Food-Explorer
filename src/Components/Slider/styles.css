@@ -3,12 +3,13 @@
     justify-content: space-between;
     flex-direction: row;
     display: flex;
+    padding: 0px 45px;
 
 
 }
 
 
-.swiper-button-next{
-    color: aqua;
-
+.swiper-button-next::after,.swiper-button-prev::after{
+    color: white;
+   
 }

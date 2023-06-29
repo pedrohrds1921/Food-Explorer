@@ -1,4 +1,14 @@
-import { Container,Content,Wrapper,IngredientsArea,WrapperTxtarea,ButtonArea} from "./styles"
+import { 
+  Container,
+  Content,
+  Wrapper,
+  IngredientsArea,
+  WrapperTxtarea,
+  ButtonArea,
+  InputName,
+  InputPrice,
+  InputImg
+} from "./styles"
 import Footer from "../../../Components/Footer"
 import {Header} from "../../../Components/Header"
 import InputImage from "../../../Components/InputImage"
@@ -7,8 +17,9 @@ import { Itens } from "../../../Components/Itens"
 import BackButton from "../../../Components/BackButton/index"
 import {RiArrowDropDownLine}from "react-icons/ri"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams,useNavigate} from "react-router-dom"
 import { api } from "../../../services/api"
+
 
 export function EditFood(){
 
@@ -21,7 +32,7 @@ const [Description, setDescription] = useState('');
 const [FoodImgFile, setFoodImgFile] = useState(null);
 const [Ingredients,setIngredients]=useState([])
 const [newIngredients,setNewIngredients]=useState()
-
+const navigate=useNavigate()
 function formatCurrency (inputValue) {
   const numericValue = inputValue.replace(/\D/g, '');
   const decimalValue = parseFloat(numericValue) / 100;
@@ -47,6 +58,17 @@ const handleChange = (event) => {
   setPrice(formattedValue);
 };
 
+
+async function handleRemove(){
+
+  const confirme=window.confirm("Deseja realmente remover o prato ?")
+
+  if(confirme){
+    await api.delete(`foods/${params.id}`)
+    alert("Prato deletado")
+    navigate("/")
+  }
+}
 
 async function handleFoodUpdate(){
 
@@ -94,11 +116,10 @@ useEffect(()=>{
             <Header type={1}/>
             {food && <Content>
             <BackButton  to={-1}fontSize={15}/>
-              <form action="">
                 <h2>Editar Prato</h2>
-                <InputImage title={'Selecione imagem para alterá-la'} onChange={handleFileChange} />
-                <Input 
-                
+              <form action="">
+               <InputImg  title={'Selecione imagem para alterá-la'} onChange={handleFileChange} />
+                <InputName 
                 title="Nome" 
                 value={Name}
                 onChange={e=>setName(e.target.value)}
@@ -139,12 +160,14 @@ useEffect(()=>{
                      />
                   </IngredientsArea>
                 </Wrapper>
-                <Input title="Preço" 
-                  value={Price}
-                  onChange={handleChange}
+               <InputPrice
+                className
+                title="Preço" 
+                value={Price}
+                onChange={handleChange}
                 type="text"
-                
                 />
+            
                 <WrapperTxtarea>
                   <label htmlFor="Descrição">Descrição</label>
                   <textarea 
@@ -155,7 +178,7 @@ useEffect(()=>{
                   />
                 </WrapperTxtarea>
                 <ButtonArea>
-                <button type="button">Exclur Prato </button> 
+                <button onClick={handleRemove}type="button">Exclur Prato </button> 
                 <button 
                 onClick={handleFoodUpdate} 
                 type="button">Salvar alterações</button>

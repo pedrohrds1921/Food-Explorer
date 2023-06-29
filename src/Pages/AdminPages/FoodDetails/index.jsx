@@ -4,10 +4,9 @@ import Footer from "../../../Components/Footer"
 import {AiOutlineLeft} from"react-icons/ai"
 import{Ingredients} from "../../../Components/Ingredients"
 import { api } from "../../../services/api"
-
 import { useNavigate,useParams } from "react-router-dom";
 import { useState,useEffect } from "react"
-
+import { useMediaQuery } from "react-responsive";
 
 export default function FoodDetails(){
 const [food,setFood]=useState(null)
@@ -15,6 +14,9 @@ const [foodUrl,setFoodUrl]=useState()
 const navigate = useNavigate()
 const params = useParams();
 
+const isDesktop = useMediaQuery({
+  query: '(min-width: 768px)'
+})
 function handleEdit(id){
     navigate(`/edit/${id}`)
   }
@@ -34,7 +36,7 @@ useEffect(()=>{
     return(
         <Container>
               <Header type={1}/>
-                {food &&
+                {!isDesktop &&food &&
                 <Content>
                 <button  onClick={()=>navigate(-1)}>
                     <AiOutlineLeft  size={30} fill="white"/> 
@@ -49,6 +51,24 @@ useEffect(()=>{
            
                 <button  onClick={()=>handleEdit(food.id)}className="Edit">Editar prato</button>
 
+              </Content>}
+              {isDesktop &&food &&
+                <Content>
+                <button  onClick={()=>navigate(-1)}>
+                    <AiOutlineLeft  size={30} fill="white"/> 
+                    <p>Voltar</p>
+                </button>
+                <div className="wrapper">
+                  <WrapperImg>
+                  <img src={foodUrl} alt=""/>
+                  </WrapperImg>
+                  <div className="foodInfo">
+                    <h2>{food.Name}</h2>
+                    <p>{food.Description}</p>
+                    <Ingredients ingredientsData={food.ingredientsFood} />
+                    <button  onClick={()=>handleEdit(food.id)}className="Edit">Editar prato</button>
+                  </div>
+                </div>
               </Content>}
               <Footer/>
         </Container>

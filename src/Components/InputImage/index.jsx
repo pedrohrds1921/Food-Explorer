@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 
-export default function InputImage({title ,onChange}){
+export default function InputImage({title ,className,onChange}){
 
     const [fileName, setFileName] = useState(title); 
    
@@ -19,7 +19,7 @@ export default function InputImage({title ,onChange}){
     };
 
     return(
-        <Container>
+        <Container className={className}>
           
             <p>Imagem do prato </p>
             <label htmlFor="image"><BsUpload/>{fileName}</label>
